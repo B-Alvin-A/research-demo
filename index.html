@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ApexResearch — Independent Research Consultancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f4f0e8;
+    --gold: #c8a84b;
+    --gold-light: #e8d89a;
+    --offwhite: #faf8f3;
+    --muted: #6b6657;
+    --border: rgba(14,14,14,0.12);
+    --section-border: rgba(14,14,14,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    color: #fff;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: var(--ink); }
+
+  /* ── HERO ── */
+  #hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 0 3rem;
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 80px solid rgba(200,168,75,0.07);
+    pointer-events: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: 25%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.12);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+
+  .hero-h1 em {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-ghost {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: #fff; }
+
+  .btn-ghost::after {
+    content: '→';
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stat {
+    padding: 1.75rem 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .hero-stat:first-child { border-top: 3px solid var(--gold); }
+
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+  }
+
+  /* ── MARQUEE BAND ── */
+  .marquee-band {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 24s linear infinite;
+  }
+
+  .marquee-inner span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: var(--ink);
+    margin: 0 2rem;
+  }
+
+  .marquee-inner span.dot {
+    font-size: 8px;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+    opacity: 0.4;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 72px);
+    letter-spacing: 2px;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .section-lead {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--offwhite);
+    border-top: 1px solid var(--section-border);
+    border-bottom: 1px solid var(--section-border);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 1rem;
+  }
+
+  .about-card {
+    background: var(--offwhite);
+    padding: 2.5rem;
+    transition: background 0.2s;
+  }
+
+  .about-card:hover { background: #fff; }
+
+  .about-card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .about-card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.3px;
+  }
+
+  .about-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── CASE STUDIES ── */
+  #cases {
+    background: var(--ink);
+    color: #fff;
+    padding: 6rem 3rem;
+  }
+
+  #cases .section-tag { color: rgba(255,255,255,0.35); }
+  #cases .section-h2 { color: #fff; }
+  #cases .section-lead { color: rgba(255,255,255,0.45); }
+
+  .cases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .case-item {
+    background: var(--ink);
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 2.5rem;
+    align-items: start;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-left: 3px solid transparent;
+  }
+
+  .case-item:hover {
+    background: #181818;
+    border-left-color: var(--gold);
+  }
+
+  .case-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+
+  .case-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(200,168,75,0.3);
+    padding: 3px 10px;
+    margin-bottom: 12px;
+  }
+
+  .case-item h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .case-item p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .case-arrow {
+    font-size: 24px;
+    color: rgba(255,255,255,0.15);
+    align-self: center;
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .case-item:hover .case-arrow {
+    color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  /* ── TEAM ── */
+  #team {
+    background: var(--paper);
+    border-top: 1px solid var(--section-border);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 2rem;
+  }
+
+  .team-card {
+    background: var(--paper);
+    padding: 2.5rem;
+    transition: background 0.2s;
+  }
+
+  .team-card:hover { background: var(--offwhite); }
+
+  .team-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    background: var(--ink);
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .team-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .team-card .role {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .team-card .bio {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--offwhite);
+    border-top: 1px solid var(--section-border);
+  }
+
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info .section-h2 { margin-bottom: 1rem; }
+  .contact-info p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .contact-detail .icon {
+    width: 32px;
+    height: 32px;
+    background: var(--ink);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    font-weight: 300;
+    resize: vertical;
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: rgba(14,14,14,0.3); }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .contact-form .btn-submit {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.2s;
+  }
+
+  .contact-form .btn-submit:hover { background: var(--gold); color: var(--ink); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #fff;
+  }
+
+  footer .logo span { color: var(--gold); }
+
+  footer .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  footer .footer-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer .footer-links a:hover { color: var(--gold); }
+
+  footer .copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── DIVIDER LINE ── */
+  .gold-line {
+    height: 3px;
+    background: var(--gold);
+    width: 48px;
+    margin-bottom: 2rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+    .hero-right { flex-direction: row; flex-wrap: wrap; gap: 1px; }
+    .hero-stat { flex: 1 1 140px; }
+    section, #cases, #contact { padding: 4rem 1.5rem; }
+    .about-grid, .team-grid { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .case-item { grid-template-columns: 60px 1fr auto; gap: 1.25rem; padding: 1.75rem; }
+    .case-num { font-size: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Apex<span>Research</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#cases">Case studies</a></li>
+    <li><a href="#team">Our team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Independent Research Consultancy</div>
+    <h1 class="hero-h1">Evidence<br/>that moves<br/><em>the world</em></h1>
+    <p class="hero-sub">We help governments, NGOs, and private sector leaders navigate complexity through rigorous research and sharp, actionable analysis.</p>
+    <div class="hero-actions">
+      <a href="#cases" class="btn-primary">Explore our work</a>
+      <a href="#contact" class="btn-ghost">Start a conversation</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-num">18</div>
+      <div class="hero-stat-label">Years in practice</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">340+</div>
+      <div class="hero-stat-label">Research engagements</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">24</div>
+      <div class="hero-stat-label">Countries served</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">91%</div>
+      <div class="hero-stat-label">Client return rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Primary Research</span><span class="dot">●</span>
+    <span>Policy Evaluation</span><span class="dot">●</span>
+    <span>Data Analysis</span><span class="dot">●</span>
+    <span>Strategic Advisory</span><span class="dot">●</span>
+    <span>Market Research</span><span class="dot">●</span>
+    <span>Impact Assessment</span><span class="dot">●</span>
+    <span>Feasibility Studies</span><span class="dot">●</span>
+    <span>Primary Research</span><span class="dot">●</span>
+    <span>Policy Evaluation</span><span class="dot">●</span>
+    <span>Data Analysis</span><span class="dot">●</span>
+    <span>Strategic Advisory</span><span class="dot">●</span>
+    <span>Market Research</span><span class="dot">●</span>
+    <span>Impact Assessment</span><span class="dot">●</span>
+    <span>Feasibility Studies</span><span class="dot">●</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About us</div>
+  <h2 class="section-h2">Grounded in<br/>evidence.</h2>
+  <p class="section-lead">ApexResearch is an independent consultancy combining social science methodology with deep sector expertise across public health, development, and private markets.</p>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-num">01</div>
+      <h3>Primary research</h3>
+      <p>Surveys, interviews, focus groups, and ethnographic fieldwork designed with statistical rigour and adapted to local contexts.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-num">02</div>
+      <h3>Data analysis</h3>
+      <p>Quantitative and qualitative analysis to surface patterns, test hypotheses, and translate raw data into clear findings.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-num">03</div>
+      <h3>Policy evaluation</h3>
+      <p>Independent assessment of programme effectiveness, outcomes measurement, and value-for-money analysis for funders and implementers.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-num">04</div>
+      <h3>Strategic advisory</h3>
+      <p>Translating research findings into clear, actionable recommendations that leadership teams can act on with confidence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="section-tag">Case studies</div>
+  <h2 class="section-h2">Selected<br/>engagements.</h2>
+  <p class="section-lead">A sample of recent research projects spanning sectors and geographies.</p>
+  <div class="cases-list">
+    <div class="case-item">
+      <div class="case-num">01</div>
+      <div>
+        <div class="case-tag">Public sector</div>
+        <h3>National health workforce assessment</h3>
+        <p>Mixed-methods study across 12 districts examining staffing gaps, retention drivers, and training needs commissioned by the Ministry of Health.</p>
+      </div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item">
+      <div class="case-num">02</div>
+      <div>
+        <div class="case-tag">Financial services</div>
+        <h3>Consumer trust in digital payments</h3>
+        <p>Quantitative survey (n=2,400) mapping adoption barriers and trust signals across income segments in three East African markets.</p>
+      </div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item">
+      <div class="case-num">03</div>
+      <div>
+        <div class="case-tag">NGO / Development</div>
+        <h3>Rural livelihoods — endline evaluation</h3>
+        <p>Difference-in-differences design measuring income, food security, and resilience outcomes for a large-scale agricultural development programme.</p>
+      </div>
+      <div class="case-arrow">→</div>
+    </div>
+    <div class="case-item">
+      <div class="case-num">04</div>
+      <div>
+        <div class="case-tag">Private sector</div>
+        <h3>Market entry feasibility — East Africa</h3>
+        <p>Competitive landscape analysis, regulatory mapping, and consumer demand sizing for a global FMCG client entering two new markets.</p>
+      </div>
+      <div class="case-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-tag">Our team</div>
+  <h2 class="section-h2">The people<br/>behind the work.</h2>
+  <p class="section-lead">Our researchers bring academic rigour and hands-on experience across the public, private, and development sectors.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">DR</div>
+      <h3>Dr. Diana Reeves</h3>
+      <span class="role">Founding Director</span>
+      <p class="bio">15 years in policy research. Former World Bank consultant. Specialises in health systems, social protection, and mixed-methods design.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">MK</div>
+      <h3>Martin Kato</h3>
+      <span class="role">Lead Analyst</span>
+      <p class="bio">Quantitative methods, survey design, and statistical modelling. MSc in development economics, LSE. Fluent in R and Stata.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">SA</div>
+      <h3>Stella Auma</h3>
+      <span class="role">Senior Researcher</span>
+      <p class="bio">Qualitative research lead with extensive fieldwork experience across Sub-Saharan Africa. Specialist in participatory methods.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-h2">Start a<br/>conversation.</h2>
+      <p>Whether you have a defined research brief or are still scoping a question, we are happy to discuss how we can help.</p>
+      <div class="contact-detail">
+        <div class="icon">✉</div>
+        hello@apexresearch.org
+      </div>
+      <div class="contact-detail">
+        <div class="icon">✆</div>
+        +256 414 000 000
+      </div>
+      <div class="contact-detail">
+        <div class="icon">◎</div>
+        Kampala, Uganda · London, UK
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row">
+        <input type="text" placeholder="Your name" required />
+        <input type="email" placeholder="Email address" required />
+      </div>
+      <input type="text" placeholder="Organisation" />
+      <select>
+        <option value="" disabled selected>Type of enquiry</option>
+        <option>Primary research</option>
+        <option>Programme evaluation</option>
+        <option>Strategic advisory</option>
+        <option>Market research</option>
+        <option>Other</option>
+      </select>
+      <textarea rows="5" placeholder="Brief description of your research need…"></textarea>
+      <button type="submit" class="btn-submit">Send enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Apex<span>Research</span></div>
+  <div class="footer-links">
+    <a href="#">Privacy policy</a>
+    <a href="#">Terms of use</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <div class="copy">© 2026 ApexResearch Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
