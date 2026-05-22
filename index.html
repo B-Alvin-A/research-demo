@@ -10,22 +10,6 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* :root {
-  --navy: #1a6b5c;
-  --navy-dark: #022012;
-  --green-light: #068549;
-  --green: #0dfc8c;
-  --sand: #f5f0e8;
-  --white: #ffffff;
-  --ink: #1a1a1a;
-  --ink-60: rgba(26,26,26,0.6);
-  --ink-30: rgba(26,26,26,0.3);
-  --ink-10: rgba(26,26,26,0.08);
-  --amber: #c8933a;
-  --border: rgba(26,26,26,0.1);
-  --radius: 4px;
-} */
-
 :root {
   --navy: #111649;
   --navy-dark: #0b1035;
@@ -817,6 +801,20 @@ nav {
   line-height: 1.65;
 }
 
+/* ── ENGAGEMENT LINKS ── */
+.case-item a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.case-item a:hover {
+  color: var(--green-dark);
+}
+
 /* ── CONTACT ── */
 #contact {
   background: var(--sand);
@@ -991,27 +989,251 @@ footer {
 .hero-inner > *:nth-child(1) { animation-delay: 0.1s; }
 .hero-inner > *:nth-child(2) { animation-delay: 0.25s; }
 
-/* ── MOBILE ── */
-@media (max-width: 960px) {
-  nav { padding: 0 1.5rem; }
-  .nav-center { display: none; }
+/* ── HAMBURGER BUTTON ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 300;
+  flex-shrink: 0;
+}
 
-  .hero-inner { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; }
-  .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 1px; }
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE DRAWER ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--white);
+  z-index: 190;
+  overflow-y: auto;
+  padding: 1.5rem 1.5rem 3rem;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu-section {
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle svg { transition: transform 0.25s; flex-shrink: 0; }
+.mobile-menu-toggle.expanded svg { transform: rotate(180deg); }
+
+.mobile-sub {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: 0.75rem;
+}
+
+.mobile-sub.open { display: flex; }
+
+.mobile-sub a {
+  padding: 0.65rem 0 0.65rem 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-70);
+  text-decoration: none;
+  border-left: 2px solid var(--green-light);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.mobile-sub a:hover { color: var(--navy); border-left-color: var(--navy); }
+
+.mobile-menu-link {
+  display: block;
+  padding: 1rem 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu-link:last-child { border-bottom: none; }
+
+.mobile-cta {
+  margin-top: 1.5rem;
+  display: block;
+  text-align: center;
+  padding: 15px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ── TABLET 768–960px ── */
+@media (max-width: 960px) {
+  nav { padding: 0 2rem; }
+  .nav-center { display: none; }
+  .nav-actions { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* hero */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding: 4rem 2rem 3rem;
+    gap: 2.5rem;
+  }
+  .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1px;
+  }
   .hero-stat { flex: 1 1 140px; }
 
-  #about, #team { padding: 4rem 1.5rem; }
-  #values, #cases, #contact { padding: 4rem 1.5rem; }
-  .vision-band { padding: 3rem 1.5rem; }
+  /* sections */
+  #about { padding: 4rem 2rem; }
+  #team  { padding: 4rem 2rem; }
+  #values  { padding: 4rem 2rem; }
+  #cases   { padding: 4rem 2rem; }
+  #contact { padding: 4rem 2rem; }
+  .vision-band { padding: 3rem 2rem; }
+  footer { padding: 3rem 2rem; }
 
-  .about-grid { grid-template-columns: 1fr; }
-  .vmg-grid { grid-template-columns: 1fr; }
-  .values-grid { grid-template-columns: 1fr 1fr; }
-  .team-grid { grid-template-columns: 1fr; }
+  /* grids */
+  .about-grid   { grid-template-columns: 1fr; }
+  .vmg-grid     { grid-template-columns: 1fr; }
+  .values-grid  { grid-template-columns: 1fr 1fr; }
+  .team-grid    { grid-template-columns: 1fr 1fr; }
   .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
-  .form-row { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row     { grid-template-columns: 1fr 1fr; }
+  .footer-top   { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+  /* cases */
+  .case-item { grid-template-columns: 60px 1fr; }
+  .case-arrow { display: none; }
+}
+
+/* ── MOBILE ≤ 600px ── */
+@media (max-width: 600px) {
+  nav { padding: 0 1.25rem; height: 64px; }
+  .mobile-menu { top: 64px; }
+
+  .nav-logo-name { font-size: 1.25rem; }
+  .nav-logo-tag  { font-size: 9px; letter-spacing: 1.2px; }
+
+  /* hero */
+  .hero-inner { padding: 3rem 1.25rem 2.5rem; gap: 2rem; }
+  .hero-h1    { font-size: clamp(34px, 9vw, 52px); }
+  .hero-desc  { font-size: 15px; }
+  .hero-pill  { font-size: 10px; }
+  .hero-stats { flex-direction: column; gap: 1px; }
+  .hero-stat  { flex: none; width: 100%; padding: 1.25rem 1.5rem; }
+  .stat-num   { font-size: 36px; }
+  .btn-hero-primary,
+  .btn-hero-ghost { padding: 12px 22px; font-size: 11px; width: 100%; text-align: center; }
+  .hero-btns  { flex-direction: column; gap: 10px; }
+
+  /* sections */
+  #about { padding: 3rem 1.25rem; }
+  #team  { padding: 3rem 1.25rem; }
+  #values  { padding: 3rem 1.25rem; }
+  #cases   { padding: 3rem 1.25rem; }
+  #contact { padding: 3rem 1.25rem; }
+  .vision-band { padding: 2.5rem 1.25rem; }
+  footer { padding: 2.5rem 1.25rem; }
+
+  /* tab buttons scroll on small screens */
+  .tab-row { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  .tab-btn { font-size: 11px; padding: 10px 16px; }
+
+  /* grids → single column */
+  .vmg-grid     { grid-template-columns: 1fr; }
+  .values-grid  { grid-template-columns: 1fr; }
+  .team-grid    { grid-template-columns: 1fr; }
+  .about-grid   { grid-template-columns: 1fr; }
+  .form-row     { grid-template-columns: 1fr; }
+  .footer-top   { grid-template-columns: 1fr; gap: 2rem; }
+
+  /* cases */
+  .case-item { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
+  .case-num  { font-size: 26px; }
+  .case-arrow { display: none; }
+
+  /* section type */
+  .section-h2   { font-size: clamp(26px, 7vw, 36px); }
+  .section-lead { font-size: 15px; margin-bottom: 2rem; }
+
+  /* team bios: allow expand/collapse on mobile */
+  .team-bio { max-height: 4.5em; overflow: hidden; position: relative; transition: max-height 0.35s ease; }
+  .team-bio.expanded { max-height: 600px; }
+  .team-bio:not(.expanded)::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2em;
+    background: linear-gradient(transparent, var(--white));
+  }
+  .team-card .read-more {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  /* hide read-more on desktop */
+
+  /* contact form */
+  .btn-submit { width: 100%; text-align: center; }
+
+  /* footer */
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+  /* ticker slightly smaller */
+  .ticker-inner span { font-size: 10px; margin: 0 1rem; }
 }
 </style>
 </head>
@@ -1069,7 +1291,43 @@ footer {
   <div class="nav-actions">
     <a href="#contact" class="btn-solid">Get in touch</a>
   </div>
+
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+
+  <div class="mobile-menu-section">
+    <button class="mobile-menu-toggle" id="mToggleAbout">
+      About
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-sub" id="mSubAbout">
+      <a href="#about" class="mobile-close-on-click">Who We Are</a>
+      <a href="#team"  class="mobile-close-on-click">Our Team</a>
+    </div>
+  </div>
+
+  <div class="mobile-menu-section">
+    <button class="mobile-menu-toggle" id="mToggleWhat">
+      What We Do
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mobile-sub" id="mSubWhat">
+      <a href="#cases" class="mobile-close-on-click">Primary Research</a>
+      <a href="#cases" class="mobile-close-on-click">Policy Advisory</a>
+      <a href="#cases" class="mobile-close-on-click">Data Analysis</a>
+      <a href="#cases" class="mobile-close-on-click">Strategic Advisory</a>
+    </div>
+  </div>
+
+  <a href="#cases"   class="mobile-menu-link mobile-close-on-click">Engagements</a>
+  <a href="#contact" class="mobile-menu-link mobile-close-on-click">Contact</a>
+  <a href="#contact" class="mobile-cta mobile-close-on-click">Get in touch</a>
+</div>
 
 
 <!-- HERO -->
@@ -1373,6 +1631,62 @@ function switchTab(btn, key) {
   btn.classList.add('active');
   document.getElementById('tab-' + key).classList.add('active');
 }
+
+/* ── Hamburger / mobile drawer ── */
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+// Close drawer when any anchor link inside it is clicked
+document.querySelectorAll('.mobile-close-on-click').forEach(el => {
+  el.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+});
+
+// Accordion sub-menus in drawer
+function mobileAccordion(toggleId, subId) {
+  const btn = document.getElementById(toggleId);
+  const sub = document.getElementById(subId);
+  btn.addEventListener('click', () => {
+    const expanded = sub.classList.toggle('open');
+    btn.classList.toggle('expanded', expanded);
+  });
+}
+mobileAccordion('mToggleAbout', 'mSubAbout');
+mobileAccordion('mToggleWhat',  'mSubWhat');
+
+/* ── Team bio expand/collapse (mobile only) ── */
+function toggleBio(btn) {
+  const bio = btn.previousElementSibling;
+  const expanded = bio.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Read less ↑' : 'Read more ↓';
+}
+
+// Show read-more buttons only on mobile
+function syncReadMoreVisibility() {
+  const isMobile = window.innerWidth <= 600;
+  document.querySelectorAll('.team-card .read-more').forEach(btn => {
+    btn.style.display = isMobile ? 'inline-block' : 'none';
+    // Also reset bios to collapsed when exiting mobile
+    if (!isMobile) {
+      const bio = btn.previousElementSibling;
+      bio.classList.remove('expanded');
+      btn.textContent = 'Read more ↓';
+    }
+  });
+}
+syncReadMoreVisibility();
+window.addEventListener('resize', syncReadMoreVisibility);
 </script>
 </body>
 </html>
