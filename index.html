@@ -799,6 +799,7 @@ nav {
   font-size: 13.5px;
   color: var(--ink-60);
   line-height: 1.65;
+  text-align: justify;
 }
 
 /* ── ENGAGEMENT LINKS ── */
@@ -1151,8 +1152,8 @@ footer {
   .case-arrow { display: none; }
 }
 
-/* ── MOBILE ≤ 600px ── */
-@media (max-width: 600px) {
+/* ── MOBILE ≤ 768px ── */
+@media (max-width: 768px) {
   nav { padding: 0 1.25rem; height: 64px; }
   .mobile-menu { top: 64px; }
 
@@ -1678,7 +1679,7 @@ function toggleBio(btn) {
 
 // Show read-more buttons only on mobile
 function syncReadMoreVisibility() {
-  const isMobile = window.innerWidth <= 600;
+  const isMobile = window.innerWidth <= 768;
   document.querySelectorAll('.team-card .read-more').forEach(btn => {
     btn.style.display = isMobile ? 'inline-block' : 'none';
     // Also reset bios to collapsed when exiting mobile
