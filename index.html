@@ -1530,24 +1530,28 @@ footer {
       <h3>Emmanuel K. Kisaame</h3>
       <div class="team-role">Team Leader</div>
       <p class="team-bio">Emmanuel Keith Kisaame is a Ugandan economist and co-founder of Welfare Metrics. In a career span of 15 years, he has supported governments, donors and civil society in East Africa to improve evidence-based policy making especially for children in humanitarian settings. Emmanuel is currently a PhD Fellow at the School of Economics in Makerere University where he is leading research on the impact of social protection measures on the welfare of refugee children in Uganda fleeing from conflict in the Democratic Republic of Congo. He holds a Masters in Economic Policy and Planning from Makerere University. Emmanuel has extensive experience in Public Financial Management, Policy Research and Advisory, Early Childhood Development policy, and strategic development</p>
+      <button class="read-more" onclick="toggleBio(this)">Read more ↓</button>
     </div>
     <div class="team-card">
       <div class="team-avatar">SA</div>
       <h3>Susan Aneno</h3>
       <div class="team-role">Operations Manager</div>
       <p class="team-bio">Susan is a development economist and co-founder of Welfare Metrics. She has over 10 years of experience in organizational development with particular expertise in project finance and administration. She has experience in providing finance and administrative support to donor funded projects through her work at Pathfinder International (Uganda Country Office) and various other projects</p>
+      <button class="read-more" onclick="toggleBio(this)">Read more ↓</button>
     </div>
     <div class="team-card">
       <div class="team-avatar">RA</div>
       <h3>Ms Ruth Ankunda</h3>
       <div class="team-role">Organizational Learning Specialist</div>
       <p class="team-bio">Ruth is a Strategic Learning and Project Management Expert with over 8 years of demonstrated excellence in USAID program development, implementation, and oversight. Proven track record in managing complex development projects while designing and implementing robust learning systems that ensure data-driven decision making and adaptive management practices. Demonstrated expertise in project design, stakeholder coordination, grant management, and performance monitoring across diverse sectors including health, education, and livelihood development.  Successfully managed multiple concurrent projects with budgets exceeding $1M while ensuring effective integration of collaborating, learning, and adapting (CLA) approaches. An excellent communicator and strategic leader with proven ability to engage diverse stakeholders, facilitate high-impact learning events, and drive organizational improvement through systematic knowledge capture and project adaptation. Track record successfully coordinating with government ministries, implementing partners and donor communities to achieve common goals</p>
+      <button class="read-more" onclick="toggleBio(this)">Read more ↓</button>
     </div>
     <div class="team-card">
       <div class="team-avatar">RW</div>
       <h3>Ms Rhona Walusimbi</h3>
       <div class="team-role">M&E Specialist</div>
       <p class="team-bio">Rhona is an international development professional with over 20 years of experience in program management, monitoring and evaluation (M&E), and research for development programs across Africa. She is highly skilled and experienced in providing management and technical M&E service for international development programs with multiple implementers and funding agencies including USAID and the European Union. Her experience includes senior-level work for international development agencies such as USAID, the African Union, and FAO. She is an expert in developing programme and project monitoring, evaluation, and learning plans.  Rhona has over 10 years of programme management experience with USAID/Uganda for projects in excess of US $5 million; and for government multi-sector and private sector development programs in Uganda. She also has extensive experience in research and analysis of policies pertaining to food security and hunger; sustainable use of natural resources in Africa; and expertise in agricultural commodity marketing</p>
+      <button class="read-more" onclick="toggleBio(this)">Read more ↓</button>
     </div>
   </div>
 </section>
@@ -1669,7 +1673,7 @@ mobileAccordion('mToggleWhat',  'mSubWhat');
 function toggleBio(btn) {
   const bio = btn.previousElementSibling;
   const expanded = bio.classList.toggle('expanded');
-  btn.textContent = expanded ? 'Read less ↑' : 'Read more ↓';
+  btn.textContent = expanded ? '  ↑  ' : 'Read more ↓';
 }
 
 // Show read-more buttons only on mobile
