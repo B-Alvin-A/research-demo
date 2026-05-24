@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Welfare Metrics — Independent Research social enterprise</title>
+<title>Welfare Metrics — Independent Research Social Enterprise</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -303,7 +303,7 @@ nav {
 .hero-pill span {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--amber);
+  background: var(--ink);
   display: inline-block;
 }
 
@@ -379,7 +379,7 @@ nav {
 }
 
 .hero-stat:first-child {
-  border-top: 3px solid var(--amber);
+  border-top: 3px solid var(--ink);
 }
 
 .stat-num {
@@ -629,7 +629,7 @@ nav {
 
 .value-card:hover {
   background: rgba(255,255,255,0.08);
-  border-top-color: var(--amber);
+  border-top-color: var(--ink);
 }
 
 .value-icon {
@@ -1551,7 +1551,7 @@ footer {
     <div class="about-card">
       <div class="about-num">01</div>
       <h3>Primary research</h3>
-      <p>We blend analytical depth with lived realites combining evidence, local context and strategic thinking to produce insights that are immediately usable.</p>
+      <p>We blend analytical depth with lived realities combining evidence, local context and strategic thinking to produce insights that are immediately usable.</p>
     </div>
     <div class="about-card">
       <div class="about-num">02</div>
@@ -1613,7 +1613,7 @@ footer {
         <div>
           <div class="case-tag">Public sector</div>
           <h3>National ECD Situational Analysis for Uganda</h3>
-          <p>Conducted a situational analysis of Early Childhood Development for Uganda's Ministry of Gennder, Labour & Social Development.</p>
+          <p>Conducted a situational analysis of Early Childhood Development for Uganda's Ministry of Gender, Labour & Social Development.</p>
         </div>
         <!-- <div class="case-arrow">→</div> -->
       </div>
@@ -1631,7 +1631,7 @@ footer {
         <div>
           <div class="case-tag">Organisational Development</div>
           <h3>Developing Organisational Strategy</h3>
-          <p>Welfare Metrics supported the development of <a href="https://necdaug.org/">NECDA Uganda</a>'s 5 year strategic plan between Febuary and May 2026.</p>
+          <p>Welfare Metrics supported the development of <a href="https://necdaug.org/">NECDA Uganda</a>'s 5 year strategic plan between February and May 2026.</p>
         </div>
         <!-- <div class="case-arrow">→</div> -->
       </div>
@@ -1696,22 +1696,97 @@ footer {
         Kiwatule - Kampala, Uganda
       </div>
     </div>
-    <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <form
+      id="contact-form"
+      class="contact-form"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+    >
+
+      <!-- Web3Forms Access Key -->
+      <input
+        type="hidden"
+        name="access_key"
+        value="11fd1d3f-631e-4b23-9107-5240c001006e"
+      />
+
+      <!-- Optional: subject -->
+      <input
+        type="hidden"
+        name="subject"
+        value="New Welfare Metrics Enquiry"
+      />
+      <input
+        type="hidden"
+        name="from_name"
+        value="Welfare Metrics Website"
+      />
+
+      <!-- Honeypot Spam Protection -->
+      <input
+        type="checkbox"
+        name="botcheck"
+        style="display:none;"
+      />
+
       <div class="form-row">
-        <input type="text" placeholder="Your name" required />
-        <input type="email" placeholder="Email address" required />
+        <input
+          type="text"
+          name="name"
+          placeholder="Your name"
+          required
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          required
+        />
       </div>
-      <input type="text" placeholder="Organisation" />
+
+      <input
+        type="text"
+        name="organisation"
+        placeholder="Organisation"
+      />
+
       <select name="enquiry_type" required>
-        <option value="" disabled selected>Type of enquiry</option>
-        <option value="Primary research">Primary research</option>
-        <option value="Programme evaluation">Programme evaluation</option>
-        <option value="Strategic advisory">Strategic advisory</option>
-        <option value="Market research">Market research</option>
-        <option value="Other">Other</option>
+        <option value="" disabled selected>
+          Type of enquiry
+        </option>
+
+        <option value="Primary research">
+          Primary research
+        </option>
+
+        <option value="Programme evaluation">
+          Programme evaluation
+        </option>
+
+        <option value="Strategic advisory">
+          Strategic advisory
+        </option>
+
+        <option value="Market research">
+          Market research
+        </option>
+
+        <option value="Other">
+          Other
+        </option>
       </select>
-      <textarea rows="5" placeholder="Brief description of your research need…" required></textarea>
-      <button type="submit" class="btn-submit">Send enquiry →</button>
+
+      <textarea
+        name="message"
+        rows="5"
+        placeholder="Brief description of your research need…"
+        required
+      ></textarea>
+
+      <button type="submit" class="btn-submit">
+        Send enquiry →
+      </button>
     </form>
   </div>
 </section>
@@ -1853,11 +1928,6 @@ footer {
       e.preventDefault();
 
       const formData = new FormData(form);
-
-      formData.append(
-          "access_key",
-          "11fd1d3f-631e-4b23-9107-5240c001006e"
-      );
 
       const originalText = submitBtn.textContent;
 
