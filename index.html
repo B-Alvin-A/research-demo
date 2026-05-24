@@ -1821,6 +1821,18 @@ footer {
   </div>
 </footer>
 
+<!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <div class="toast-icon" id="toast-icon">✓</div>
+    <div class="toast-content">
+      <div class="toast-title" id="toast-title">Success</div>
+      <div class="toast-message" id="toast-message">
+        Your message has been sent successfully.
+      </div>
+    </div>
+    <button class="toast-close" id="toast-close">×</button>
+  </div>
+
   <script>
   function switchTab(btn, key) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1980,17 +1992,5 @@ footer {
       }
   });
   </script>
-
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">
-    <div class="toast-icon" id="toast-icon">✓</div>
-    <div class="toast-content">
-      <div class="toast-title" id="toast-title">Success</div>
-      <div class="toast-message" id="toast-message">
-        Your message has been sent successfully.
-      </div>
-    </div>
-    <button class="toast-close" id="toast-close">×</button>
-  </div>
 </body>
 </html>
